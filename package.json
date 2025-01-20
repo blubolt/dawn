@@ -37,5 +37,8 @@
     "prettier": "^3.2.5",
     "sass": "^1.81.1",
     "stylelint": "^16.2.1"
+  },
+  "dependencies": {
+    "swiper": "^11.1.15"
   }
 }

@@ -50,7 +50,7 @@ const scssTemplate = `.${kebabCase} {
 
 // Create directories if they don't exist
 const snippetsDir = path.join(process.cwd(), 'snippets');
-const stylesDir = path.join(process.cwd(), 'src/styles/snippets');
+const stylesDir = path.join(process.cwd(), 'src/snippets');
 
 fs.mkdirSync(snippetsDir, { recursive: true });
 fs.mkdirSync(stylesDir, { recursive: true });
@@ -61,20 +61,6 @@ fs.writeFileSync(path.join(snippetsDir, `${kebabCase}.liquid`), liquidTemplate);
 // Create SCSS file
 fs.writeFileSync(path.join(stylesDir, `_${kebabCase}.scss`), scssTemplate);
 
-// Add import to theme.scss if it doesn't exist
-const themePath = path.join(process.cwd(), 'src/styles/theme.scss');
-const importStatement = `@import "snippets/${kebabCase}";\n`;
-
-if (!fs.existsSync(themePath)) {
-  fs.writeFileSync(themePath, '');
-}
-
-const themeContent = fs.readFileSync(themePath, 'utf8');
-if (!themeContent.includes(importStatement)) {
-  fs.appendFileSync(themePath, importStatement);
-}
-
 console.log(`✨ Created snippet: ${snippetName}`);
 console.log(`📁 snippets/${kebabCase}.liquid`);
-console.log(`📁 src/styles/snippets/_${kebabCase}.scss`);
-console.log(`📝 Updated src/styles/theme.scss`);
+console.log(`📁 src/snippets/_${kebabCase}.scss`);
