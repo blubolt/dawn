@@ -100,9 +100,9 @@ Based on `.github/CONTRIBUTING.md` (lines 53-58):
 5. Update changelog
 
 * **Web-native in its purest form:** Themes run on the [evergreen web](https://www.w3.org/2001/tag/doc/evergreen-web/). We leverage the latest web browsers to their fullest, while maintaining support for the older ones through progressive enhancement—not polyfills.
-* **Lean, fast, and reliable:** Functionality and design defaults to “no” until it meets this requirement. Code ships on quality. Themes must be built with purpose. They shouldn’t support each and every feature in Shopify.
-* **Server-rendered:** HTML must be rendered by Shopify servers using Liquid. Business logic and platform primitives such as translations and money formatting don’t belong on the client. Async and on-demand rendering of parts of the page is OK, but we do it sparingly as a progressive enhancement.
-* **Functional, not pixel-perfect:** The Web doesn’t require each page to be rendered pixel-perfect by each browser engine. Using semantic markup, progressive enhancement, and clever design, we ensure that themes remain functional regardless of the browser.
+* **Lean, fast, and reliable:** Functionality and design defaults to "no" until it meets this requirement. Code ships on quality. Themes must be built with purpose. They shouldn't support each and every feature in Shopify.
+* **Server-rendered:** HTML must be rendered by Shopify servers using Liquid. Business logic and platform primitives such as translations and money formatting don't belong on the client. Async and on-demand rendering of parts of the page is OK, but we do it sparingly as a progressive enhancement.
+* **Functional, not pixel-perfect:** The Web doesn't require each page to be rendered pixel-perfect by each browser engine. Using semantic markup, progressive enhancement, and clever design, we ensure that themes remain functional regardless of the browser.
 
 You can find a more detailed version of our theme code principles in the [contribution guide](https://github.com/Shopify/dawn/blob/main/.github/CONTRIBUTING.md#theme-code-principles).
 
@@ -180,6 +180,52 @@ We love fast websites! Which is why we created [Shopify/lighthouse-ci-action](ht
 #### Shopify/theme-check-action
 
 Dawn runs [Theme Check](#Theme-Check) on every commit via [Shopify/theme-check-action](https://github.com/Shopify/theme-check-action).
+
+### Creating Sections and Snippets
+
+Dawn includes CLI commands to generate new sections and snippets with the correct file structure and boilerplate code:
+
+```bash
+# Create a new section
+npm run create:section mySectionName
+
+# Create a new snippet
+npm run create:snippet mySnippetName
+```
+
+This will:
+1. Create the Liquid template with proper stylesheet inclusion
+2. Generate the SCSS file with BEM structure
+3. Set up responsive breakpoints
+4. Add standard padding/margin variables
+
+Generated files follow this structure:
+
+```text
+sections/
+└── custom-my-section-name.liquid
+src/
+└── sections/
+    └── _custom-my-section-name.scss
+```
+
+The build process will:
+- Compile section SCSS files to `assets/section-*.css`
+- Compile snippet SCSS files to `assets/component-*.css`
+- Watch for changes during development (`npm run start:testing`)
+- Auto-reload the theme preview
+
+Each generated section includes:
+- Standard padding settings
+- Mobile-first responsive design
+- BEM class structure
+- Proper asset loading
+
+Each generated snippet includes:
+- Component-based styling
+- BEM methodology
+- Responsive breakpoints
+- Asset optimization
 
 ## Contributing
 
