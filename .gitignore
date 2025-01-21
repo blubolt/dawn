@@ -1,9 +1,41 @@
-# OS generated files #
-######################
+.env
+node_modules/
+**/*/node_modules/**/*
+
+dist/
+
+.bck/
+.awcache
+
+# Configs
+src/config.yml
+
+# Re enable on production
+yarn.lock
+
+
+.ds_store
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+**/*/.ds_store
+**/*/.DS_Store
+
+# Remove css and JS builds
+assets/bb-*.dev.js
+assets/vendors@*.dev.js
+assets/theme.dev.css
+assets/*.LICENSE.*
+assets/vendors-node_modules_*_js.dev.js
+snippets/script-tags-dev.liquid
+assets/bs-*.dev.css
+stats.html
+
+# Ignore yarn
+app-layer/yarn.lock
+cypress/videos/**/*.mp4
+cypress/screenshots/**/*.png
+yarn-error.log
+
+integration/cypress/videos
+
+# IDEs
+.idea/
