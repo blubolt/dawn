@@ -18,9 +18,56 @@ Dawn represents a HTML-first, JavaScript-only-as-needed approach to theme develo
 [Theme Development](https://shopify.dev/docs/storefronts/themes/best-practices) |
 [Theme Check](https://shopify.dev/docs/storefronts/themes/tools/theme-check) |
 [Lighthouse](https://shopify.dev/docs/storefronts/themes/tools/lighthouse-ci) |
-[Shopify CLI](https://shopify.dev/docs/storefronts/themes/tools/cli) |
+[Shopify CLI](https://shopify.dev/docs/storefronts/themes/tools/cli)
 
 ## Extension Guidelines
+
+### Creating Sections and Snippets
+
+Dawn includes CLI commands to generate new sections and snippets with the correct file structure and boilerplate code:
+
+```bash
+# Create a new section
+npm run create:section mySectionName
+
+# Create a new snippet
+npm run create:snippet mySnippetName
+```
+
+This will:
+1. Create the Liquid template with proper stylesheet inclusion
+2. Generate the SCSS file with BEM structure
+3. Set up responsive breakpoints
+4. Add standard padding/margin variables
+
+Generated files follow this structure:
+
+```text
+sections/
+└── custom-my-section-name.liquid
+src/
+└── sections/
+    └── _custom-my-section-name.scss
+```
+
+The build process will:
+- Compile section SCSS files to `assets/section-*.css`
+- Compile snippet SCSS files to `assets/component-*.css`
+- Watch for changes during development (`npm run start:testing`)
+- Auto-reload the theme preview
+
+Each generated section includes:
+- Standard padding settings
+- Mobile-first responsive design
+- BEM class structure
+- Proper asset loading
+
+Each generated snippet includes:
+- Component-based styling
+- BEM methodology
+- Responsive breakpoints
+- Asset optimization
+
 
 ### 1. Section Development
 
@@ -187,52 +234,6 @@ We love fast websites! Which is why we created [Shopify/lighthouse-ci-action](ht
 #### Shopify/theme-check-action
 
 Dawn runs [Theme Check](#Theme-Check) on every commit via [Shopify/theme-check-action](https://github.com/Shopify/theme-check-action).
-
-### Creating Sections and Snippets
-
-Dawn includes CLI commands to generate new sections and snippets with the correct file structure and boilerplate code:
-
-```bash
-# Create a new section
-npm run create:section mySectionName
-
-# Create a new snippet
-npm run create:snippet mySnippetName
-```
-
-This will:
-1. Create the Liquid template with proper stylesheet inclusion
-2. Generate the SCSS file with BEM structure
-3. Set up responsive breakpoints
-4. Add standard padding/margin variables
-
-Generated files follow this structure:
-
-```text
-sections/
-└── custom-my-section-name.liquid
-src/
-└── sections/
-    └── _custom-my-section-name.scss
-```
-
-The build process will:
-- Compile section SCSS files to `assets/section-*.css`
-- Compile snippet SCSS files to `assets/component-*.css`
-- Watch for changes during development (`npm run start:testing`)
-- Auto-reload the theme preview
-
-Each generated section includes:
-- Standard padding settings
-- Mobile-first responsive design
-- BEM class structure
-- Proper asset loading
-
-Each generated snippet includes:
-- Component-based styling
-- BEM methodology
-- Responsive breakpoints
-- Asset optimization
 
 ## Contributing
 
