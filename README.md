@@ -13,6 +13,13 @@
 
 Dawn represents a HTML-first, JavaScript-only-as-needed approach to theme development. It's Shopify's first source available theme with performance, flexibility, and [Online Store 2.0 features](https://www.shopify.com/partners/blog/shopify-online-store) built-in and acts as a reference for building Shopify themes.
 
+[Templates](https://shopify.dev/docs/storefronts/themes/architecture/templates) |
+[Theme Architecture](https://shopify.dev/docs/storefronts/themes/architecture) |
+[Theme Development](https://shopify.dev/docs/storefronts/themes/best-practices) |
+[Theme Check](https://shopify.dev/docs/storefronts/themes/tools/theme-check) |
+[Lighthouse](https://shopify.dev/docs/storefronts/themes/tools/lighthouse-ci) |
+[Shopify CLI](https://shopify.dev/docs/storefronts/themes/tools/cli) |
+
 ## Extension Guidelines
 
 ### 1. Section Development
