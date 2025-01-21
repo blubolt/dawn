@@ -1,0 +1,3 @@
+[submodule "coding-standards"]
+	path = coding-standards
+	url = https://github.com/blubolt/coding-standards.git

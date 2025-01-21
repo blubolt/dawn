@@ -1,0 +1,7 @@
+# Custom sections and snippets
+sections/custom-* merge=ours
+snippets/custom-* merge=ours
+assets/custom-* merge=ours
+assets/section-custom-* merge=ours
+assets/snippet-custom-* merge=ours
+tools/create-* merge=ours

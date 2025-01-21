@@ -13,17 +13,157 @@
 
 Dawn represents a HTML-first, JavaScript-only-as-needed approach to theme development. It's Shopify's first source available theme with performance, flexibility, and [Online Store 2.0 features](https://www.shopify.com/partners/blog/shopify-online-store) built-in and acts as a reference for building Shopify themes.
 
+[Templates](https://shopify.dev/docs/storefronts/themes/architecture/templates) |
+[Theme Architecture](https://shopify.dev/docs/storefronts/themes/architecture) |
+[Theme Development](https://shopify.dev/docs/storefronts/themes/best-practices) |
+[Theme Check](https://shopify.dev/docs/storefronts/themes/tools/theme-check) |
+[Lighthouse](https://shopify.dev/docs/storefronts/themes/tools/lighthouse-ci) |
+[Shopify CLI](https://shopify.dev/docs/storefronts/themes/tools/cli)
+
+## Extension Guidelines
+
+### Creating Sections and Snippets
+
+Dawn includes CLI commands to generate new sections and snippets with the correct file structure and boilerplate code:
+
+```bash
+# Create a new section
+npm run create:section mySectionName
+
+# Create a new snippet
+npm run create:snippet mySnippetName
+```
+
+This will:
+1. Create the Liquid template with proper stylesheet inclusion
+2. Generate the SCSS file with BEM structure
+3. Set up responsive breakpoints
+4. Add standard padding/margin variables
+
+Generated files follow this structure:
+
+```text
+sections/
+└── custom-my-section-name.liquid
+src/
+└── sections/
+    └── _custom-my-section-name.scss
+```
+
+The build process will:
+- Compile section SCSS files to `assets/section-*.css`
+- Compile snippet SCSS files to `assets/component-*.css`
+- Watch for changes during development (`npm run start:testing`)
+- Auto-reload the theme preview
+
+Each generated section includes:
+- Standard padding settings
+- Mobile-first responsive design
+- BEM class structure
+- Proper asset loading
+
+Each generated snippet includes:
+- Component-based styling
+- BEM methodology
+- Responsive breakpoints
+- Asset optimization
+
+
+### 1. Section Development
+
+Following `coding-standards/liquid/README.md` standards:
+
+- Use standardized naming conventions for settings:
+  - `title` for Titles
+  - `content` for Content areas (use `richtext` or `inline_richtext`)
+  - `cta_text` and `cta_link` for CTAs
+  - `image_desktop`, `image_tablet`, `image_mobile` for responsive images
+
+### 2. Styling
+
+Based on `coding-standards/css/README.md` (lines 479-486):
+
+- Follow OOCSS and BEM methodology
+- Create reusable, composable components
+- Maintain low specificity
+- Use CSS custom properties for theme settings
+- Mobile-first responsive approach
+
+### 3. JavaScript Integration
+
+Following `coding-standards/blubolt-quality/README.md` (lines 26-31):
+
+- Use provided helper utilities:
+  - `data-smooth-scroll`
+  - `data-click-toggle`
+- Add new functionality in `src/scripts/`
+- Use data attributes for JavaScript targeting
+
+### 4. Documentation Requirements
+
+Based on `coding-standards/documentation/README.md` (lines 13-14):
+
+Each new feature/component should include:
+- Inline documentation for complex functionality
+- Usage examples
+- Available customization options
+- Performance considerations
+
+### 5. Quality Assurance
+
+Following `.github/PULL_REQUEST_TEMPLATE.md` (lines 36-43):
+
+- Test on multiple browsers
+- Ensure mobile responsiveness
+- Validate accessibility
+- Run Theme Check linting
+- Check performance metrics
+
+### 6. Development Workflow
+
+1. Create feature branch: `[initials]-[ticket-id]`
+2. Follow coding standards
+3. Document changes
+4. Create PR with comprehensive description
+5. Include mobile/desktop screenshots
+
+## Getting Started with Extension
+
+1. Install recommended VS Code extensions
+2. Use provided snippets for common patterns
+3. Follow the folder structure
+4. Use existing theme settings where possible
+5. Add new features progressively
+
+## Performance Guidelines
+
+Based on `.github/CONTRIBUTING.md` (lines 53-58):
+
+- Maintain zero Cumulative Layout Shift
+- Avoid render-blocking resources
+- Optimize for core web vitals
+- Use lazy loading where appropriate
+- Implement proper image sizing
+
+## Contributing
+
+1. Review existing components before creating new ones
+2. Follow the naming conventions
+3. Update documentation
+4. Create meaningful PRs
+5. Update changelog
+
 * **Web-native in its purest form:** Themes run on the [evergreen web](https://www.w3.org/2001/tag/doc/evergreen-web/). We leverage the latest web browsers to their fullest, while maintaining support for the older ones through progressive enhancement—not polyfills.
-* **Lean, fast, and reliable:** Functionality and design defaults to “no” until it meets this requirement. Code ships on quality. Themes must be built with purpose. They shouldn’t support each and every feature in Shopify.
-* **Server-rendered:** HTML must be rendered by Shopify servers using Liquid. Business logic and platform primitives such as translations and money formatting don’t belong on the client. Async and on-demand rendering of parts of the page is OK, but we do it sparingly as a progressive enhancement.
-* **Functional, not pixel-perfect:** The Web doesn’t require each page to be rendered pixel-perfect by each browser engine. Using semantic markup, progressive enhancement, and clever design, we ensure that themes remain functional regardless of the browser.
+* **Lean, fast, and reliable:** Functionality and design defaults to "no" until it meets this requirement. Code ships on quality. Themes must be built with purpose. They shouldn't support each and every feature in Shopify.
+* **Server-rendered:** HTML must be rendered by Shopify servers using Liquid. Business logic and platform primitives such as translations and money formatting don't belong on the client. Async and on-demand rendering of parts of the page is OK, but we do it sparingly as a progressive enhancement.
+* **Functional, not pixel-perfect:** The Web doesn't require each page to be rendered pixel-perfect by each browser engine. Using semantic markup, progressive enhancement, and clever design, we ensure that themes remain functional regardless of the browser.
 
 You can find a more detailed version of our theme code principles in the [contribution guide](https://github.com/Shopify/dawn/blob/main/.github/CONTRIBUTING.md#theme-code-principles).
 
 ## Getting started
 We recommend using Dawn as a starting point for theme development. [Learn more on Shopify.dev](https://shopify.dev/themes/getting-started/create).
 
-> If you're building a theme for the Shopify Theme Store, then you can use Dawn as a starting point. However, the theme that you submit needs to be [substantively different from Dawn](https://shopify.dev/themes/store/requirements#uniqueness) so that it provides added value for merchants. Learn about the [ways that you can use Dawn](https://shopify.dev/themes/tools/dawn#ways-to-use-dawn).
+> If you're building a theme for the Shopify Theme Store, then you can use Dawn as a starting point. However, the theme that you submit needs to be [substantially different from Dawn](https://shopify.dev/themes/store/requirements#uniqueness) so that it provides added value for merchants. Learn about the [ways that you can use Dawn](https://shopify.dev/themes/tools/dawn#ways-to-use-dawn).
 
 Please note that the main branch may include code for features not yet released. The "stable" version of Dawn is available in the theme store.
 
@@ -44,6 +184,21 @@ git remote add upstream https://github.com/Shopify/dawn.git
 ```sh
 git fetch upstream
 git pull upstream main
+```
+
+Alternatively, you can create a separate branch for upstream changes and merge them carefully:
+
+```sh
+# Create a branch for upstream changes
+git checkout -b dawn-upstream
+git fetch upstream
+git reset --hard upstream/main
+
+# Go back to your main branch
+git checkout main
+
+# Merge upstream changes while ignoring your custom files
+git merge dawn-upstream -X ignore-space-change -X ignore-all-space --no-commit
 ```
 
 ## Developer tools
